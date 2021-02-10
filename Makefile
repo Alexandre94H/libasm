@@ -7,21 +7,7 @@ NAME				=	libasm.a
 COMPILE				=	nasm
 REMOVE				=	rm -f
 
-ifeq (${OS},Windows_NT)
-    uname_S := Windows
-else
-    uname_S := ${shell uname -s}
-endif
-
-ifeq (${uname_S}, Windows)
-    format = win64
-else ifeq ($(uname_S), Linux)
-    format = elf64
-else ifeq ($(uname_S), Darwin)
-    format = macho64
-endif
-
-COMPILATION_FLAGS	=	-f ${format}
+COMPILATION_FLAGS	=	-f macho64
 
 .s.o:
 	${COMPILE} ${COMPILATION_FLAGS} $< -o ${<:.s=.o}
