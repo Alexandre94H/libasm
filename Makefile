@@ -1,9 +1,10 @@
 SOURCES					=	ft_strlen.s
 
-OBJECTS					=	${SOURCES:.s=.o}
+OBJECTS					=	$(SOURCES:.s=.o)
 
 NAME					=	libasm.a
 MAIN					=	main.c
+FILE					=	a.out
 
 COMPILE_ASM				=	nasm
 COMPILE_C				=	gcc
@@ -13,27 +14,27 @@ COMPILATION_FLAGS_ASM	=	-f elf64
 COMPILATION_FLAGS_C		=	-Wall -Wextra -Werror -L . -l asm -no-pie 
 
 .s.o:
-	${COMPILE_ASM} ${COMPILATION_FLAGS_ASM} $< -o ${<:.s=.o}
+	$(COMPILE_ASM) $(COMPILATION_FLAGS_ASM) $< -o $(<:.s=.o)
 
-${NAME}: ${OBJECTS}
-	ar rcs ${NAME} ${OBJECTS}
+$(NAME): $(OBJECTS)
+	ar rcs $(NAME) $(OBJECTS)
 
-all: ${NAME}
+all: $(NAME)
 
 clean:
-	${REMOVE} ${OBJECTS}
+	$(REMOVE) $(OBJECTS)
 
 fclean: clean
-	${REMOVE} ${NAME}
+	$(REMOVE) $(NAME) $(FILE)
 
 re: fclean all
 
-${MAIN}:
-	${COMPILE_C} ${MAIN} ${COMPILATION_FLAGS_C}
+$(FILE):
+	$(COMPILE_C) $(MAIN) $(COMPILATION_FLAGS_C) -o $(FILE)
 
-main: all ${MAIN}
+main: all $(FILE)
 
 run: main
-	./a.out
+	./$(FILE)
 
 .PHONY: all clean fclean re main run
