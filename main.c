@@ -6,7 +6,7 @@
 /*   By: ahallain <ahallain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 11:03:01 by ahallain          #+#    #+#             */
-/*   Updated: 2021/03/04 18:55:34 by ahallain         ###   ########.fr       */
+/*   Updated: 2021/03/04 19:15:54 by ahallain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 size_t	ft_strlen(char *);
 char	*ft_strcpy(char *, const char *);
-int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *, const char *);
+ssize_t	ft_write(int, const void *, size_t);
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	ft_write(1, &c, 1);
 }
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-		ft_putchar(*str++);
+	ft_write(1, str, ft_strlen(str));
 }
 
 void	ft_putnbr(int n)
@@ -57,6 +57,8 @@ int		main(void)
 	ft_putstr(ft_strcpy(dest, (const char *)str));
 	ft_putchar('\n');
 	ft_putnbr(ft_strcmp("aa", "ac"));
+	ft_putchar('\n');
+	ft_putnbr(ft_write(1, str, ft_strlen(str)));
 	ft_putchar('\n');
 	return (0);
 }
