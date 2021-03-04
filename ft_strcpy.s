@@ -5,7 +5,6 @@ return:
 	mov		rax, rdi
 	ret
 
-
 ft_strcpy:
 	xor		rbx, rbx
 

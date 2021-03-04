@@ -1,5 +1,6 @@
 SOURCES					=	ft_strlen.s \
-							ft_strcpy.s
+							ft_strcpy.s \
+							ft_strcmp.s
 
 OBJECTS					=	$(SOURCES:.s=.o)
 
