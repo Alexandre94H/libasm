@@ -2,7 +2,8 @@ SOURCES					=	ft_strlen.s \
 							ft_strcpy.s \
 							ft_strcmp.s \
 							ft_write.s \
-							ft_read.s
+							ft_read.s \
+							ft_strdup.s
 
 OBJECTS					=	$(SOURCES:.s=.o)
 
@@ -15,7 +16,7 @@ COMPILE_C				=	gcc
 REMOVE					=	rm -f
 
 COMPILATION_FLAGS_ASM	=	-f elf64
-COMPILATION_FLAGS_C		=	-Wall -Wextra -Werror -L . -l asm
+COMPILATION_FLAGS_C		=	-Wall -Wextra -Werror -L . -l asm -no-pie
 
 .s.o:
 	$(COMPILE_ASM) $(COMPILATION_FLAGS_ASM) $< -o $(<:.s=.o)
