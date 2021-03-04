@@ -1,4 +1,5 @@
-SOURCES					=	ft_strlen.s
+SOURCES					=	ft_strlen.s \
+							ft_strcpy.s
 
 OBJECTS					=	$(SOURCES:.s=.o)
 
@@ -11,7 +12,7 @@ COMPILE_C				=	gcc
 REMOVE					=	rm -f
 
 COMPILATION_FLAGS_ASM	=	-f elf64
-COMPILATION_FLAGS_C		=	-Wall -Wextra -Werror -L . -l asm -no-pie 
+COMPILATION_FLAGS_C		=	-Wall -Wextra -Werror -L . -l asm
 
 .s.o:
 	$(COMPILE_ASM) $(COMPILATION_FLAGS_ASM) $< -o $(<:.s=.o)
@@ -29,10 +30,10 @@ fclean: clean
 
 re: fclean all
 
-$(FILE):
+$(FILE): $(NAME) $(MAIN)
 	$(COMPILE_C) $(MAIN) $(COMPILATION_FLAGS_C) -o $(FILE)
 
-main: all $(FILE)
+main: $(FILE)
 
 run: main
 	./$(FILE)

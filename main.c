@@ -6,7 +6,7 @@
 /*   By: ahallain <ahallain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 11:03:01 by ahallain          #+#    #+#             */
-/*   Updated: 2021/03/02 23:22:29 by ahallain         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:30:42 by ahallain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 size_t	ft_strlen(char *);
+char	*ft_strcpy(char *, const char *);
 
 void	ft_putchar(char c)
 {
@@ -45,12 +46,15 @@ void	ft_putnbr(int n)
 
 int		main(void)
 {
-	char	*str;
+	char		*str;
+	char		dest[256] = {};
 
 	str = "Hello World!";
 	ft_putstr(str);
 	ft_putchar('\n');
 	ft_putnbr(ft_strlen(str));
+	ft_putchar('\n');
+	ft_putstr(ft_strcpy(dest, (const char *)str));
 	ft_putchar('\n');
 	return (0);
 }
